@@ -1,20 +1,23 @@
+import java.util.Scanner;
+
 public class User {
-    private String username;
-    private Task[] taskArray=new Task[5];
+    private String userName;
+    //private Tasks[] tasks1 =new Tasks[10];
+    private Task[] task=new Task[10];
+    Scanner sc = new Scanner(System.in);
 
-    public String getUsername() {
-        return username;
+
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        username = username;
-    }
-
-    public Task[] getTaskArray() {
-        return taskArray;
-    }
 
     User(String username){
-        this.username=username;
+        this.userName=username;
     }
-}
+
+
+    public Task[] getTask() {
+        return task;
+    }
+    }
