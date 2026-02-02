@@ -142,9 +142,8 @@ public class Main
                                             System.out.println("There is no Task in 'To Do");
                                         }
 
-                                    }
 
-                                while (!yes) {
+                                    while (!yes) {
                                         System.out.println("Do you want to Continue?(yes/no) or give 'exit' to Exit");
                                         action = sc.nextLine();
                                         if (action.equals("no") || (action.equals("exit"))) {
@@ -157,9 +156,10 @@ public class Main
                                             System.out.println("Enter valid String");
                                             continue;
                                         }
+                                    }
                                 }}
                                 catch (Exception e) {
-                                    if (currentUser.getTask()[i] == null && currentUser.getTask()[i].getStatus() != null) {
+                                    if (currentUser.getTask()[i] != null && currentUser.getTask()[i].getStatus() == null) {
                                         System.out.println("Task Displayed");
                                     }
                                     else if(action.equals("no") || (action.equals("exit"))){
@@ -206,7 +206,7 @@ public class Main
                                 }
                                 }
                                 catch (Exception e) {
-                                    if (currentUser.getTask()[i] == null && currentUser.getTask()[i].getStatus() != null) {
+                                    if (currentUser.getTask()[i] != null && currentUser.getTask()[i].getStatus() == null) {
                                         System.out.println("Task Displayed");
                                     }
                                     else if(action.equals("no") || (action.equals("exit"))){
