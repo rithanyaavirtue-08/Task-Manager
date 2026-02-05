@@ -84,7 +84,6 @@ public class Main
                                 if (currentUser.getTask()[i] != null) {
                                     continue;
                                 }
-
                             }
                             while(!yes)
                             {
@@ -99,7 +98,6 @@ public class Main
                             }
 
                             }
-
                         } catch (Exception e) {
                             System.out.println("Add Task Exited!");
                             break;
@@ -126,20 +124,17 @@ public class Main
                             }
                             if (listChoice.equals("1")) {
                                 String action = "";
+                                boolean isToDo=false;
                                 try {
                                     for (i = 0; i < currentUser.getTask().length; i++)
                                     {
                                         if (currentUser.getTask()[i] != null){
                                             if( currentUser.getTask()[i].getStatus() == null
                                                 || currentUser.getTask()[i].getStatus().equals("ToDO")) {
-                                            String taskDescription = currentUser.getTask()[i].getDescription();
-                                            String taskTitle = currentUser.getTask()[i].getTitle();
                                             System.out.print(i + 1);
-                                            System.out.print(".");
-                                            System.out.println(taskTitle);
-                                            System.out.print("Description:");
-                                            System.out.println(taskDescription);
-                                            System.out.println("Status:To DO");
+                                            Main.Commen(currentUser,i);
+                                            System.out.println("To DO");
+                                            isToDo=true;
 
                                         }
                                         if( currentUser.getTask()[i].getStatus() != null){
@@ -150,8 +145,11 @@ public class Main
                                             break;
                                         }
                                         else {
-                                            continue;
+                                            break;
                                         }
+                                    }
+                                    if(!isToDo){
+                                      System.out.println("There is no Task!");
                                     }
                                     while (!yes)
                                     {
@@ -169,7 +167,8 @@ public class Main
 
                                     }
                                 } catch (Exception e) {
-                                    if (currentUser.getTask()[i] != null){
+                                    if (currentUser.getTask()[i] != null)
+                                    {
                                     if(currentUser.getTask()[i].getStatus() == null|| currentUser.getTask()[i].getStatus().equals("ToDO")) {
                                         if (action.equals("yes")) {
                                             System.out.println("Your Task Displayed");
@@ -178,94 +177,83 @@ public class Main
                                             System.out.println("Exited..");
                                             break;
                                         }
+                                       }
                                     }
-                                    }
-
                                     else if (action.equals("yes")) {
                                        continue;
-
                                     }
-                                }
-                            }
-
-                            else if (listChoice.equals("2")) {
-                                String action = "";
-                                try
-                                {for (i = 0; i < currentUser.getTask().length; i++)
-                                {
-                                    if (currentUser.getTask()[i]!=null && currentUser.getTask()[i].getStatus() != null)
-                                    {
-                                        if (currentUser.getTask()[i].getStatus().equals("On Progress")) {
-                                            String taskDescription = currentUser.getTask()[i].getDescription();
-                                            String taskTitle = currentUser.getTask()[i].getTitle();
-                                            System.out.print(i + 1);
-                                            System.out.print(".");
-                                            System.out.println(taskTitle);
-                                            System.out.print("Description:");
-                                            System.out.println(taskDescription);
-                                            System.out.print("Status:");
-                                            System.out.println(currentUser.getTask()[i].getStatus());
-
-                                        }
-                                        else{
-                                            continue;
-                                        }
-                                    }
-                                    else{
-                                        System.out.println("There is no Task in ");
+                                    else if(action.equals("no")||action.equals("exit")){
                                         break;
                                     }
                                 }
-                                    while(!yes){
-                                    System.out.println("Do you want to Continue?(yes/no) or give 'exit' to Exit");
-                                    action = sc.nextLine();
-                                    if (action.equals("no") || (action.equals("exit"))) {
-                                        throw new Exception();
-                                    }
-                                    else if (action.equals("yes")) {
-                                        throw new Exception();
-                                    }
-                                    else {
-                                        System.out.println("Enter valid String");
-                                    }}
+                            }
+                            else if (listChoice.equals("2")) {
+                                String action = "";
+                                boolean isOnProgress=false;
+                                try {
+                                    for (i = 0; i < currentUser.getTask().length; i++) {
+                                        if (currentUser.getTask()[i] != null && currentUser.getTask()[i].getStatus() != null) {
+                                            if (currentUser.getTask()[i].getStatus().equals("On Progress")) {
+                                                System.out.print(i + 1);
+                                               Main.Commen(currentUser,i);
+                                               System.out.println(currentUser.getTask()[i].getStatus());
+                                                isOnProgress = true;
 
-                                }
-                                catch (Exception e) {
-                                    if (currentUser.getTask()[i] != null && currentUser.getTask()[i].getStatus() == "On Progress") {
-                                        if(action.equals("yes")){
-                                            System.out.println("Task Displayed");
-                                        }else{
-                                            System.out.println("Exited..");
-                                            break;
+                                            }
+                                            else if(currentUser.getTask()[i]==null){
+                                                break;
+                                            }
+                                            else {
+                                                break;
+                                            }
                                         }
                                     }
-                                  //  else if(action.equals("no") || (action.equals("exit"))){
-                                   //     System.out.println("Exited..");
-                                     //   break;
-                                    //}
-                                    else {
-                                        System.out.println("There is no Task");
 
+                                    if (!isOnProgress) {
+                                        System.out.println("There is no Task in 'On Progress'");
+                                    }
+                                    while (!yes)
+                                    {
+                                        System.out.println("Do you want to Continue?(yes/no) or give 'exit' to Exit");
+                                        action = sc.nextLine();
+                                       //Main.Continue(action);
+                                        if (action.equals("no") || (action.equals("exit"))) {
+                                            throw new Exception();
+                                        }
+                                        else if (action.equals("yes")) {
+                                            throw new Exception();
+                                        }
+                                        else {
+                                            System.out.println("Enter valid String");
+                                        }
                                     }
                                 }
-                            }
+                                catch (Exception e){
+
+                                    if (action.equals("yes")) {
+                                        continue;
+                                    }
+                                    else if(action.equals("no")||action.equals("exit")){
+                                        break;
+                                    }
+                                    else {
+                                        System.out.println("There is no Task");
+                                    }
+                                }
+                                }
+
                             else if (listChoice.equals("3")) {
                                 String action = "";
                                 boolean isProgressDone=false;
-                                try {
+                                try
+                                {
                                     for (i = 0; i < currentUser.getTask().length; i++)
                                     {
                                         if (currentUser.getTask()[i]!=null && currentUser.getTask()[i].getStatus() != null)
                                         {
                                             if (currentUser.getTask()[i].getStatus().equals("Progress Done")) {
-                                                String taskDescription = currentUser.getTask()[i].getDescription();
-                                                String taskTitle = currentUser.getTask()[i].getTitle();
                                                 System.out.print(i + 1);
-                                                System.out.print(".");
-                                                System.out.println(taskTitle);
-                                                System.out.print("Description:");
-                                                System.out.println(taskDescription);
-                                                System.out.print("Status:");
+                                                Main.Commen(currentUser,i);
                                                 System.out.println(currentUser.getTask()[i].getStatus());
                                                 isProgressDone=true;
                                             }
@@ -273,45 +261,36 @@ public class Main
                                                continue;
                                             }
                                         }
-                                        else{
-                                            System.out.println("There is no Task in ");
-                                            break;
-                                        }
                                     }
-
-
-                                    while(!yes){
-                                    System.out.println("Do you want to Continue?(yes/no) or give 'exit' to Exit");
-                                    action = sc.nextLine();
-                                    if (action.equals("no") || (action.equals("exit"))) {
-                                        throw new Exception();
-                                    }
-                                    else if (action.equals("yes")) {
-                                        throw new Exception();}
-                                    else {
-                                        System.out.println("Enter valid String");
-
-                                    }}
-                                } catch (Exception r) {
+                                    if(!isProgressDone){
+                                        System.out.println("There is no Task in 'Progress Done' ");
+                                    }while(!yes)
                                     {
-                                        if (currentUser.getTask()[i] != null && currentUser.getTask()[i].getStatus() != null) {
-                                            if(action.equals("yes")){
-                                                System.out.println("Task Displayed");
-                                            }else{
-                                                System.out.println("Exited..");
-                                                break;
-                                            }
+                                        System.out.println("Do you want to Continue?(yes/no) or give 'exit' to Exit");
+                                        action = sc.nextLine();
+                                        if (action.equals("no") || (action.equals("exit"))) {
+                                            throw new Exception();
                                         }
-                                       // else if(action.equals("no") || (action.equals("exit"))){
-                                         //   System.out.println("Exited..");
-                                           // break;
-                                        //}
+                                        else if (action.equals("yes")) {
+                                            throw new Exception();
+                                        }
                                         else {
+                                            System.out.println("Enter valid String");
+
+                                        }
+                                    }
+                                } catch (Exception r) {
+                                    if (action.equals("yes")) {
+                                        continue;
+                                    }
+                                    else if(action.equals("no")||action.equals("exit")){
+                                        break;
+                                    }
+                                    else {
                                             System.out.println("There is no Task");
                                         }
                                     }
 
-                                }
                             }
                             else if (listChoice.equals("4")) {
                                 String action = "";
@@ -334,27 +313,20 @@ public class Main
                                             System.out.println("Enter valid String");
                                             continue;
                                         }
-                                    }} catch (Exception e){
-                                        if (currentUser.getTask()[i] == null && currentUser.getTask()[i].getStatus() != null) {
-                                            if(action.equals("yes")){
-                                                System.out.println("Task Displayed");
-                                                continue;
-                                            }else{
-                                                System.out.println("Exited..");
-                                                break;
-                                            }
-                                        }
-                                        else if(action.equals("no") || (action.equals("exit"))){
-                                            System.out.println("Exited..");
-                                            break;
-                                        }
-                                        else if(action.equals("yes")){
-                                            continue;
-                                        }
-                                        else {
-                                            System.out.println("There is no Task here");
-                                        }
                                     }
+                                }
+                                 catch (Exception e){
+                                     if (action.equals("yes")) {
+                                         continue;
+                                     }
+                                     else if(action.equals("no")||action.equals("exit")){
+                                         break;
+                                     }
+                                     else {
+                                         System.out.println("There is no Task");
+                                     }
+                                 }
+
                                 }
                             else {
                                 System.out.println("Enter the choice Properly!");
@@ -365,7 +337,7 @@ public class Main
                                 System.out.println("Display List Exited!");
                                 break;
                             }
-                            else {
+                            else  {
                                 System.out.println("No task Available To Display!!");
                                 break;
                             }
@@ -380,14 +352,15 @@ public class Main
                         boolean Description = Main.Description(currentUser);//static method
 
                         if (!Description) {
-                            System.out.println("No Task Updated");
+                            System.out.println("No Task to Update");
+                            break;
                         }
                         else {
                             try {
                                 Integer indexValue = 0;
                                 while (indexValue != currentUser.getTask().length) {
                                     try {
-                                        System.out.print("Enter the number of Task to update:");
+                                        System.out.println("Enter the number of Task to update:");
                                         Integer taskNum = Integer.valueOf(sc.nextLine());
                                         indexValue = Main.indexValue(taskNum);
                                         if (indexValue >= 0 && indexValue < currentUser.getTask().length
@@ -442,7 +415,7 @@ public class Main
                                         System.out.println("Enter your current Status choice:");
                                         Integer statusChoice = new Integer(sc.nextLine());
                                         if (statusChoice == 1) {
-                                            currentUser.getTask()[indexValue].setStatus("To Do");
+                                            currentUser.getTask()[indexValue].setStatus(null);
                                             System.out.println("Your Status Updated!");
                                         }
                                         if (statusChoice == 2) {
@@ -507,7 +480,7 @@ public class Main
                             try {
                                 //static method
 
-                                System.out.print("Enter the number of Task to delete or give 'exit' to Exit:");
+                                System.out.println("Enter the number of Task to delete or give 'exit' to Exit:");
                                 delNum = sc.nextLine();
                                 if (delNum.equals("exit")) {
                                     throw new Exception();
@@ -617,29 +590,13 @@ public class Main
             }
         }
     }
-    public static void Display(User currentUser){
-        for (int i = 0; i < currentUser.getTask().length; i++){
-            if (currentUser.getTask()[i]!=null) {
-                String taskDescription = currentUser.getTask()[i].getDescription();
-                String taskTitle = currentUser.getTask()[i].getTitle();
-                System.out.print(i + 1);
-                System.out.print(".");
-                System.out.println(taskTitle);
-                System.out.print("Description:");
-                System.out.println(taskDescription);
-                System.out.print("Status:");
-                if (currentUser.getTask()[i].getStatus() == null) {
-                    System.out.println("To Do");
-                }
-
-            }
-
-        }
-
-        }
-
+    public static void Commen(User currentUser,int i) {
+        String taskDescription = currentUser.getTask()[i].getDescription();
+        String taskTitle = currentUser.getTask()[i].getTitle();
+        System.out.print(".");
+        System.out.println(taskTitle);
+        System.out.print("Description:");
+        System.out.println(taskDescription);
+        System.out.print("Status:");
     }
-
-
-
-
+}
