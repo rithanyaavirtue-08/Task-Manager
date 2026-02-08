@@ -11,7 +11,6 @@ public class Main {
 
 
         while (true) {
-
             User currentUser = (User) userManager.CheckUser();
             taskManager.setCurrentUser(currentUser);
             Integer choice = 0;//declare it

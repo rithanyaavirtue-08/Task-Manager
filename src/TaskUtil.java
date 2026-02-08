@@ -65,4 +65,14 @@ public class TaskUtil {
         System.out.println(taskDescription);
         System.out.print("Status:");
     }
+    public static void taskOnly(User currentUser,int i ){
+       {if(currentUser.getTask()[i]!=null) {
+           String taskTitle = currentUser.getTask()[i].getTitle();
+           System.out.print(i + 1);
+           System.out.print(".");
+           System.out.println(taskTitle);
+       }
+
+        }
+    }
 }

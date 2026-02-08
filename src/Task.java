@@ -5,7 +5,7 @@ public class Task {
     private String Status;
     private String description;
 
-   // Scanner sc = new Scanner(System.in);
+
     public Task(String Status,String Description,String title){
 this.title=title;
 this.Status=Status;
