@@ -1,15 +1,17 @@
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class User implements UserInterface {
     private String userName;
-    private Task[] task=new Task[10];
+    List<Task> Task=new ArrayList<>();
     public String getUserName() {
         return userName;
     }
     User(String username){
         this.userName=username;
     }
-    public Task[] getTask() {
-        return task;
+    public List<Task> getTask() {
+      return Task;
     }
-    }
+     }

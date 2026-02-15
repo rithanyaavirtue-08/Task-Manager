@@ -1,12 +1,11 @@
 //import java.util.Scanner;
 
-public class Task {
+public class Task implements TaskInterface{
     private String title;
     private String Status;
     private String description;
 
-
-    public Task(String Status,String Description,String title){
+    public Task(String title,String Status,String Description){
 this.title=title;
 this.Status=Status;
 this.description=Description;
@@ -23,7 +22,7 @@ this.description=Description;
         this.title = task;
     }
 
-    Task(String title){
+    Task(String title, String toDo){
         this.title=title;
     }
 

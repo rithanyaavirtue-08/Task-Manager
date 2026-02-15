@@ -3,11 +3,11 @@ public class TaskUtil {
     {
         boolean isTaskListed = false;
        {
-        for (int i = 0; i < currentUser.getTask().length; i++) {
-            if (currentUser.getTask()[i]!= null) {
-                String taskTitle = currentUser.getTask()[i].getTitle();
-                String taskStatus=currentUser.getTask()[i].getStatus();
-                String taskDescription=currentUser.getTask()[i].getDescription();
+        for (int i = 0; i < currentUser.getTask().size(); i++) {
+            if (currentUser.getTask().get(i)!= null) {
+                String taskTitle = currentUser.getTask().get(i).getTitle();
+                String taskStatus=currentUser.getTask().get(i).getStatus();
+                String taskDescription=currentUser.getTask().get(i).getDescription();
                 System.out.print(i + 1);
                 System.out.print(".");
                 System.out.println(taskTitle);
@@ -22,7 +22,7 @@ public class TaskUtil {
                 System.out.println(taskDescription);
                 isTaskListed = true;
             }
-            if (currentUser.getTask()[i] == null) {
+            if (currentUser.getTask().get(i) == null) {
                 continue;
             }
 
@@ -57,8 +57,8 @@ public class TaskUtil {
         }
     }
     public static void Common(User currentUser,int i) {
-        String taskDescription = currentUser.getTask()[i].getDescription();
-        String taskTitle = currentUser.getTask()[i].getTitle();
+        String taskDescription = currentUser.getTask().get(i).getDescription();
+        String taskTitle = currentUser.getTask().get(i).getTitle();
         System.out.print(".");
         System.out.println(taskTitle);
         System.out.print("Description:");
@@ -66,8 +66,8 @@ public class TaskUtil {
         System.out.print("Status:");
     }
     public static void taskOnly(User currentUser,int i ){
-       {if(currentUser.getTask()[i]!=null) {
-           String taskTitle = currentUser.getTask()[i].getTitle();
+       {if(currentUser.getTask().get(i)!=null) {
+           String taskTitle = currentUser.getTask().get(i).getTitle();
            System.out.print(i + 1);
            System.out.print(".");
            System.out.println(taskTitle);
